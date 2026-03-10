@@ -1,36 +1,36 @@
-# Checks that users enter an integer
-# that is more than 13
-def int_check():
-
-
+# Checks that users enter an integer more than 0 (allows <enter>)
+def int_check(to_check):
     while True:
-        error = "Please enter an integer more than / equal to 13."
+        error = "Please enter an integer that is 1 or more."
+
+        # check for infanite mode
+        if to_check == "":
+            return "infinite"
 
         try:
-            response = int(input("Enter an integer: "))
+            response = int(to_check)
 
-            # Checks that the number is more than / equal to 13
-            if response < 13:
-                print(error)
+            # Checks that the number is more than / equal to 1
+            if response < 1:
+                # print error
+                return "invalid"
             else:
                 return response
 
         except ValueError:
-            print(error)
+                # print error
+                return "invalid"
 
 
-# main routine starts here
-game_goal = int_check()
-print(game_goal)
 
 # Automated testing is below in the form (test_case, expected_value)
 to_test = [
-    ("yes", "yes"),
-    ("Y", "yes"),
-    ("No", "no"),
-    ("N", "no"),
-    ("YeS", "yes"),
-    ("Maybe", "invalid"),
+    ('xlii','invalid'),
+    ('0.5', 'invalid'),
+    ('0', 'invalid'),
+    (1, 1),
+    (2, 2),
+    ("",'infinite'),
 ]
 
 # run test!
@@ -40,7 +40,7 @@ for item in to_test:
     expected = item[1]
 
     # get actual value (ie: test ticket function)
-    actual = string_checker(case, ["yes", "no"])
+    actual = int_check(case)
 
     # compare actual and expected and output pass / fail
     if actual == expected:
