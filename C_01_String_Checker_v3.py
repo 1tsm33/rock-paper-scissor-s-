@@ -1,9 +1,6 @@
 # Check that users have entered a valid
 # option bases on a list
-def string_checker(question, valid_ans=["yes", "no"]):
-
-    error = f"Please enter a valid option from the following list: {valid_ans}"
-
+def string_checker(question, valid_ans):
     while True:
 
         # Get user response and make sure it's lowercase
@@ -18,6 +15,8 @@ def string_checker(question, valid_ans=["yes", "no"]):
              # the first letter of an item in the list
              elif user_response == item[0]:
                  return item
+
+        return "invalid"
 
         # print error if user does not enter something that is valid
         print(error)
